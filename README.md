@@ -1,36 +1,99 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Aarc's Fund Kit SDK Next.js Sample App
 
-## Getting Started
+This sample application demonstrates how to integrate and use the Aarc SDK in a Next.js project. Specifically, it showcases the usage of two key functions: `performDeposit` (for bridging funds) and `performCheckout` (for calling contracts on different chains).
 
-First, run the development server:
+## Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- Node.js (v14 or later)
+- npm or yarn
+- A basic understanding of Next.js and React
+
+## Installation
+
+1. Clone this repository:
+   ```
+   git clone https://github.com/your-username/aarc-sdk-nextjs-sample.git
+   ```
+
+2. Navigate to the project directory:
+   ```
+   cd aarc-sdk-nextjs-sample
+   ```
+
+3. Install dependencies:
+   ```
+   npm install
+   ```
+   or
+   ```
+   yarn install
+   ```
+   or 
+   ```
+   pnpm install
+   ```
+
+## Usage
+
+### performCheckout (Calling a Contract)
+
+The `performCheckout` function enables cross-chain contract calls. It allows users to interact with contracts on different chains from where their funds are located.
+
+```javascript
+import { encodeFunctionData } from "viem";
+import { arbitrum, polygon } from "viem/chains";
+
+const callContract = async () => {
+  const destinationPayload = encodeFunctionData({
+    abi: ABI, // YOUR_ABI
+    functionName: "mint",
+    args: ["0x3039e4a4a540F35ae03A09f3D5A122c49566f919", 1000000000000],
+  });
+
+  const [address] = await wallet.requestAddresses();
+
+  const aarcSDK = new AarcCore('YOUR_AARC_API_KEY');
+
+  const tx = await aarcSDK.performCheckout({
+    toChainId: polygon.id,
+    fromChainId: arbitrum.id,
+    routeType: "Value",
+    destinationPayload,
+    destinationGasLimit: 2000000,
+    fromAddress: address,
+    toTokenAddress: "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",
+    fromTokenAddress: "0xaf88d065e77c8cC2239327C5EDb3A432268e5831",
+    targetContractAddress: "0x6D8473f39AB16b7aE854d90acDcCDC83fa3A32b4",
+    senderSigner: wallet, // wallet_signer
+    toAmount: "50000",
+  });
+
+  console.log("tx", tx);
+};
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### performDeposit (Bridging Funds)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The `performDeposit` function allows you to bridge funds between different chains.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```javascript
+import { arbitrum, base } from "viem/chains";
 
-## Learn More
+const bridgeFunds = async () => {
+  const aarcSDK = new AarcCore('YOUR_AARC_API_KEY');
 
-To learn more about Next.js, take a look at the following resources:
+  const tx = await aarcSDK.performDeposit({
+    toChainId: base.id,
+    fromChainId: arbitrum.id,
+    routeType: "Value",
+    userAddress: address,
+    toTokenAddress: "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+    fromTokenAddress: "0xaf88d065e77c8cC2239327C5EDb3A432268e5831",
+    senderSigner: wallet, // wallet_signer
+    fromAmount: "500000", 
+    recipient: address,
+  });
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+  console.log("tx", tx);
+};
+```
