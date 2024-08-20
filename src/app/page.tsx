@@ -26,7 +26,8 @@ export default function Home() {
       toTokenAddress: "0x2791Bca1f2de4661ED88A30C99A7a9449Aa84174",
       fromTokenAddress: "0xaf88d065e77c8cC2239327C5EDb3A432268e5831",
       targetContractAddress: "0x6D8473f39AB16b7aE854d90acDcCDC83fa3A32b4",
-      senderSigner: wallet as any,
+      senderSigner: wallet,
+      account: wallet.account,
       toAmount: "50000",
     });
 
@@ -44,7 +45,8 @@ export default function Home() {
       userAddress: address,
       toTokenAddress: "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
       fromTokenAddress: "0xaf88d065e77c8cC2239327C5EDb3A432268e5831",
-      senderSigner: wallet as any,
+      senderSigner: wallet,
+      account: wallet.account,
       fromAmount: "500000",
       recipient: address,
     });

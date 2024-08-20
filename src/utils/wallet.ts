@@ -1,4 +1,4 @@
-import { AarcCore } from "@aarc-xyz/core";
+import { AarcCore } from "@aarc-xyz/core-viem";
 import { createWalletClient, custom } from "viem";
 import { switchChain } from "viem/actions";
 import { arbitrum } from "viem/chains";

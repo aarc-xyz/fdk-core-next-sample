@@ -11,6 +11,9 @@ importers:
       '@aarc-xyz/core':
         specifier: ^0.1.5
         version: 0.1.5
+      '@aarc-xyz/core-viem':
+        specifier: ^0.0.2
+        version: 0.0.2(typescript@5.5.4)
       ethers:
         specifier: ^6.13.2
         version: 6.13.2
@@ -53,6 +56,9 @@ importers:
         version: 5.5.4
 
 packages:
+
+  '@aarc-xyz/core-viem@0.0.2':
+    resolution: {integrity: sha512-2p34cvtAMEGOyZOhfKk5gdiaIukUY8mAUWHV1GlfEiCgMjb+xpMoCaEkPKk/C30MUrhlT+m6kYm/xafUazHkCg==}
 
   '@aarc-xyz/core@0.1.5':
     resolution: {integrity: sha512-CLhT1YZwFRtOez6YR85Un2lDMptNX6dUo9SzVNMLR+DDnMKa4TOBM8ybxcdt0sy2taiD6pfN9eaxopmAkODjbA==}
@@ -1700,6 +1706,15 @@ packages:
     engines: {node: '>=10'}
 
 snapshots:
+
+  '@aarc-xyz/core-viem@0.0.2(typescript@5.5.4)':
+    dependencies:
+      viem: 2.18.7(typescript@5.5.4)
+    transitivePeerDependencies:
+      - bufferutil
+      - typescript
+      - utf-8-validate
+      - zod
 
   '@aarc-xyz/core@0.1.5':
     dependencies:

@@ -40,7 +40,7 @@ This sample application demonstrates how to integrate and use the Aarc SDK in a 
 To use the Aarc SDK, you need to create an instance of the `AarcCore` class. You can do this by passing your Aarc API key as an argument to the constructor.
 
 ```javascript
-import { AarcCore } from "@aarc-xyz/core";
+import { AarcCore } from "@aarc-xyz/core-viem";
 
 const aarcSDK = new AarcCore('YOUR_API_KEY');
 ```
