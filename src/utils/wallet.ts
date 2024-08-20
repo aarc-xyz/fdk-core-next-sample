@@ -1,5 +1,6 @@
-import { AarcCore } from "@aarc-dev/core";
+import { AarcCore } from "@aarc-xyz/core";
 import { createWalletClient, custom } from "viem";
+import { switchChain } from "viem/actions";
 import { arbitrum } from "viem/chains";
 
 const getWalletClient = async () => {
@@ -11,6 +12,7 @@ const getWalletClient = async () => {
     account,
     transport: custom((window as any).ethereum!),
   });
+  switchChain(walletClient, arbitrum);
   return walletClient;
 };
 

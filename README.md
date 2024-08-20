@@ -35,6 +35,16 @@ This sample application demonstrates how to integrate and use the Aarc SDK in a 
 
 ## Usage
 
+### Creating AarcCore Instance
+
+To use the Aarc SDK, you need to create an instance of the `AarcCore` class. You can do this by passing your Aarc API key as an argument to the constructor.
+
+```javascript
+import { AarcCore } from "@aarc-xyz/core";
+
+const aarcSDK = new AarcCore('YOUR_API_KEY');
+```
+
 ### performCheckout (Calling a Contract)
 
 The `performCheckout` function enables cross-chain contract calls. It allows users to interact with contracts on different chains from where their funds are located.

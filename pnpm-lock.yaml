@@ -8,9 +8,9 @@ importers:
 
   .:
     dependencies:
-      '@aarc-dev/core':
-        specifier: 0.1.4
-        version: 0.1.4
+      '@aarc-xyz/core':
+        specifier: ^0.1.5
+        version: 0.1.5
       ethers:
         specifier: ^6.13.2
         version: 6.13.2
@@ -54,8 +54,8 @@ importers:
 
 packages:
 
-  '@aarc-dev/core@0.1.4':
-    resolution: {integrity: sha512-BXBeS4lwhG+LiwF6UUjBaOti2616tgPemGwmrT3kxGPG1RKuqysejB8MpFmPUqGXj5NFmGoiXzkXgSP2YR2VDQ==}
+  '@aarc-xyz/core@0.1.5':
+    resolution: {integrity: sha512-CLhT1YZwFRtOez6YR85Un2lDMptNX6dUo9SzVNMLR+DDnMKa4TOBM8ybxcdt0sy2taiD6pfN9eaxopmAkODjbA==}
 
   '@adraffy/ens-normalize@1.10.0':
     resolution: {integrity: sha512-nA9XHtlAkYfJxY7bce8DcN7eKxWWCWkU+1GR9d+U6MbNpfwQp8TI7vqOsBsMcHoT4mBu2kypKoSKnghEzOOq5Q==}
@@ -1701,7 +1701,7 @@ packages:
 
 snapshots:
 
-  '@aarc-dev/core@0.1.4':
+  '@aarc-xyz/core@0.1.5':
     dependencies:
       '@ethersproject/abstract-signer': 5.7.0
       ethers: 6.9.2
