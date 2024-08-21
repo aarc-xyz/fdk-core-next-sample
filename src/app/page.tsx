@@ -2,10 +2,22 @@
 
 import { ABI } from "@/utils/Abi";
 import { aarcSDK, getWalletClient } from "@/utils/wallet";
+import { useEffect, useState } from "react";
 import { encodeFunctionData } from "viem";
 import { arbitrum, base, polygon } from "viem/chains";
 
 export default function Home() {
+  const [address, setAddress] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchAddress = async () => {
+      const wallet = await getWalletClient();
+      const [address] = await wallet.requestAddresses();
+      setAddress(address);
+    };
+    fetchAddress();
+  }, [address]);
+
   const callContract = async () => {
     const wallet = await getWalletClient();
     const destinationPayload = encodeFunctionData({
@@ -58,6 +70,9 @@ export default function Home() {
     <main className='flex min-h-screen flex-col items-center justify-between p-24'>
       <div className='flex flex-col items-center'>
         <span className='text-3xl'>Call contract with FDK</span>
+        {address && (
+          <span className='text-xl mt-4'>Connected Address: {address}</span>
+        )}
         <button
           className='p-2 bg-slate-700 text-white rounded-lg mt-4'
           onClick={callContract}
